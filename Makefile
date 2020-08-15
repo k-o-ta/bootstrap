@@ -8,6 +8,11 @@ apt-neovim-ppa: .apt-update
 	sudo add-apt-repository -y ppa:neovim-ppa/stable
 	sudo apt update
 
+# git=$(shell which git) みたいにかけるし、
+	# echo hello
+# 依存している箇所も
+# dotfiles: ${git}
+#     git clone  みたいにかける
 /usr/bin/git: .apt-update
 	sudo apt install git -y
 /usr/bin/zsh: .apt-update
@@ -51,6 +56,7 @@ setting-tmux:
 	git clone https://github.com/riywo/ndenv ~/.ndenv
 	git clone https://github.com/riywo/node-build.git ~/.ndenv/plugins/node-build
 
+# bashからzshに切り替えるとmakeが止まるようなので、2回makeをすることになる模様
 .start-zsh: /usr/bin/zsh dotfiles .pyenv .ndenv .rbenv
 	chsh -s /usr/bin/zsh
 	touch .start-zsh
@@ -62,7 +68,15 @@ setting-tmux:
 	pyenv install 3.8.5
 	pyenv local 3.8.5
 
+# 一回実行したらもう実行しなくて良いようにしたい。aptで入れたコマンドの日付は古いものが入るから常にこのファイルの時間より前で更新対象になってしまう。
 .apt-update:
 	sudo apt update -y
 	sudo apt upgrade -y
 	touch .apt-update
+git=$(shell which git)
+${git} :
+	echo hello
+foo: ${git}
+	touch foo
+# /usr/bin/git: .apt-update
+# 	sudo apt install git -y
