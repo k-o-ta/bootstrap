@@ -1,2 +1,16 @@
 .bash_history
 .sudo_as_admin_successful
+.config/
+.gitconfig
+.local/
+.ocamlinit
+.pyenv/
+.start-zsh
+.tmux.conf
+.vim/
+.vimrc
+.zcompdump
+.zsh_history
+.zshenv
+.zshrc
+dotfiles/
