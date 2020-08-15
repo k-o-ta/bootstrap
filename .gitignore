@@ -14,3 +14,6 @@
 .zshenv
 .zshrc
 dotfiles/
+.apt-update
+.ndenv/
+.rbenv/
